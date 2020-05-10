@@ -1,0 +1,25 @@
+{
+    "name": "maestro/api",
+    "authors": [
+        {
+            "name": "Дмитрий",
+            "email": "polishuk1003@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "ext-json": "^7.4",
+        "slim/slim": "^4.5",
+        "slim/psr7": "^1.1",
+        "php-di/php-di": "^6.1",
+        "monolog/monolog": "^2.0",
+        "middlewares/negotiation": "^2.0",
+        "webmozart/assert": "^1.8",
+        "laminas/laminas-config-aggregator": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
