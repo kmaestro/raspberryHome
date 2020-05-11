@@ -5,3 +5,4 @@ sudo echo "source ~/.nvm/nvm.sh" >> ~/.zshrc && sudo echo "source ~/.nvm/nvm.sh"
 source ~/.zshrc
 
 nvm install node
+npm install -g @vue/cli
