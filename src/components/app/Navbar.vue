@@ -53,7 +53,7 @@
         mounted() {
             this.interval = setInterval(() => {
                 this.date = new Date()
-                axios.get('http://api.home.loc').then((response) => {
+                axios.get('http://api.home.loc/v1/temperature').then((response) => {
                     this.CPU.temp = response.data.temperature
                 })
 
