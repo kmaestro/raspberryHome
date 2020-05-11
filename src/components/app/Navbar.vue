@@ -6,6 +6,7 @@
                 <i class="material-icons black-text">dehaze</i>
             </a>
             <span class="black-text">{{date | date('datetime')}}</span>
+            <span class="black-text" style="margin-left: 30px"> CPU: {{CPU.temp}} &#8451;</span>
         </div>
 
         <ul class="right hide-on-small-and-down">
@@ -39,15 +40,23 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         name: "Navbar",
         data: () => ({
             date: new Date(),
             interval: null,
+            CPU: {
+                temp: null
+            }
         }),
         mounted() {
             this.interval = setInterval(() => {
                 this.date = new Date()
+                axios.get('http://api.home.loc').then((response) => {
+                    this.CPU.temp = response.data.temperature
+                })
+
             }, 1000)
         },
         beforeDestroy() {
