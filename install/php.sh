@@ -8,3 +8,5 @@ sudo apt-get install -y php7.4-common php7.4-fpm php7.4-cli php7.4-curl php7.4-j
 sudo apt-get purge apache2 -y
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
+composer global require hirak/prestissimo
+rm -rf ~/.cache/composer/
