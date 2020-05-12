@@ -9,6 +9,6 @@ use Slim\Routing\RouteCollectorProxy;
 return static function (App $app): void {
     $app->get('/', Action\HomeAction::class);
     $app->group('/v1', function (RouteCollectorProxy $group): void {
-      $group->get('/temperature', Action\V1\Temperature\GetAction::class);
+        $group->get('/temperature', Action\V1\Temperature\GetAction::class);
     });
 };
