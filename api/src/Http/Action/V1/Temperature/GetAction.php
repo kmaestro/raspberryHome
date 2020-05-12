@@ -13,7 +13,7 @@ class GetAction implements RequestHandlerInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $temperature = round((int)shell_exec('cat /sys/class/thermal/thermal_zone0/temp')/1000, 2);
+        $temperature = round((int)shell_exec('cat /sys/class/thermal/thermal_zone0/temp')/1000, 1);
         return new JsonResponse([
             'temperature' => $temperature
         ]);

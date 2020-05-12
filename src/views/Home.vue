@@ -37,10 +37,10 @@
               </thead>
 
               <tbody>
-              <tr>
-                <td>руб</td>
-                <td>12121</td>
-                <td>12.12.12</td>
+              <tr v-for="cur in currencies" :key="cur">
+                <td>{{cur}}</td>
+                <td>{{currency.rates[cur].toFixed(5)}}</td>
+                <td>{{currency.date | date('date')}}</td>
               </tr>
               </tbody>
             </table>
@@ -50,3 +50,20 @@
     </div>
   </div>
 </template>
+<script>
+  export default {
+    name: 'Home',
+    data: () => ({
+      currency: null,
+      currencies: ['RUB', 'USD', 'EUR']
+    }),
+    async mounted() {
+      this.currency = await this.$store.dispatch('fetchCurrency')
+    },
+    methods: {
+      async refresh() {
+        this.currency = await this.$store.dispatch('fetchCurrency')
+      }
+    },
+  }
+</script>
