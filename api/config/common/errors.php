@@ -41,7 +41,7 @@ return [
 
     'config' => [
         'errors' => [
-            'display_details' => (bool)getenv('APP_DEBUG'),
+            'display_details' => (bool)$_ENV['API_DEBUG']??true,
         ],
     ],
 ];

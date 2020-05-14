@@ -12,7 +12,7 @@
         props: ['value'],
         data: () => ({
             links: [
-                {title: 'Домой', url: '/', exact: true},
+                {title: 'Домойr', url: '/', exact: true},
                 {title: 'Категории', url: '/categories'},
             ]
         })

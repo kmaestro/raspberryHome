@@ -36,7 +36,7 @@ return [
 
     'config' => [
         'logger' => [
-            'debug' => (bool)getenv('APP_DEBUG'),
+            'debug' => (bool)$_ENV['API_DEBUG'],
             'file' => null,
             'stderr' => true,
         ],
