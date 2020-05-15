@@ -13,9 +13,23 @@ class GetAction implements RequestHandlerInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        try {
+            $sh = shell_exec('python /home/pi/bme280.py');
+            preg_match('/Temperature\s*:\s*([^\s]*)\s*/', $sh, $temperatureSensor);
+            preg_match('/Pressure\s*:\s*([^\s]*)\s*/', $sh, $pressure);
+            preg_match('/Humidity\s*:\s*([^\s]*)\s*/', $sh, $humidity);
+        } catch (\Throwable $exception) {
+            $temperatureSensor[1] = 0;
+            $pressure[1] = 0;
+            $humidity[1] = 0;
+        }
+
         $temperature = round((int)shell_exec('cat /sys/class/thermal/thermal_zone0/temp')/1000, 1);
         return new JsonResponse([
-            'temperature' => $temperature
+            'temperature' => $temperature,
+            'temperatureSensor' => round((float)$temperatureSensor[1], 2),
+            'pressure' => round((float)$pressure[1], 2),
+            'humidity' => round((float)$humidity[1], 2)
         ]);
     }
 }
