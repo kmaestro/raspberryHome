@@ -14,7 +14,7 @@ class GetAction implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         try {
-            $sh = shell_exec('python /home/pi/bme280.py');
+            $sh = `sudo python /home/pi/bme280.py 2>&1`;
             preg_match('/Temperature\s*:\s*([^\s]*)\s*/', $sh, $temperatureSensor);
             preg_match('/Pressure\s*:\s*([^\s]*)\s*/', $sh, $pressure);
             preg_match('/Humidity\s*:\s*([^\s]*)\s*/', $sh, $humidity);
