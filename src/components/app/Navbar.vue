@@ -7,6 +7,9 @@
             </a>
             <span class="black-text">{{date | date('datetime')}}</span>
             <span class="black-text" style="margin-left: 30px"> CPU: {{CPU.temp}} &#8451;</span>
+            <span class="black-text" style="margin-left: 30px"> tmp: {{Sensor.temp}} &#8451;</span>
+            <span class="black-text" style="margin-left: 30px"> pressure: {{Sensor.pressure}} hPa</span>
+            <span class="black-text" style="margin-left: 30px"> humidity: {{Sensor.humidity}} %</span>
         </div>
 
         <ul class="right hide-on-small-and-down">
@@ -48,6 +51,11 @@
             interval: null,
             CPU: {
                 temp: null
+            },
+            Sensor: {
+                temp: null,
+                pressure: null,
+                humidity: null
             }
         }),
         mounted() {
@@ -55,6 +63,9 @@
                 this.date = new Date()
                 axios.get('http://api.home.loc/v1/temperature').then((response) => {
                     this.CPU.temp = response.data.temperature
+                    this.Sensor.temp = response.data.temperatureSensor
+                    this.Sensor.pressure = response.data.pressure
+                    this.Sensor.humidity = response.data.humidity
                 })
 
             }, 1000)
