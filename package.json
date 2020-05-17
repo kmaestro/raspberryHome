@@ -10,10 +10,13 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
+    "jquery": "^3.5.1",
     "materialize-css": "^1.0.0-rc.2",
+    "moment": "^2.25.3",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
+    "vue-full-calendar": "^2.7.0",
     "vue-router": "^3.1.6",
     "vuex": "^3.1.3"
   },

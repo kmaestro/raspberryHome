@@ -22,6 +22,12 @@ Vue.use(VueRouter)
     meta: {layout: 'main'},
     component: () => import('../views/Categories')
   },
+    {
+    path: '/calendar',
+    name: 'calendar',
+    meta: {layout: 'main'},
+    component: () => import('../views/Calendar')
+  },
 ]
 
 const router = new VueRouter({
