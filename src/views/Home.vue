@@ -8,7 +8,9 @@
 <!--      </button>-->
 <!--    </div>-->
 
-    <div class="row">
+    <Loader v-if="loading"/>
+
+    <div v-else class="row">
 <!--      <div class="col s12 m6 l4">-->
 <!--        <div class="card light-blue bill-card">-->
 <!--          <div class="card-content white-text">-->
@@ -54,15 +56,19 @@
   export default {
     name: 'Home',
     data: () => ({
+      loading: true,
       currency: null,
       currencies: ['RUB', 'USD', 'EUR']
     }),
     async mounted() {
       this.currency = await this.$store.dispatch('fetchCurrency')
+      this.loading = false
     },
     methods: {
       async refresh() {
+        this.loading = true
         this.currency = await this.$store.dispatch('fetchCurrency')
+        this.loading = false
       }
     },
   }
