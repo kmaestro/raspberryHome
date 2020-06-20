@@ -7,7 +7,7 @@ use Gtk3\Gtk\Window;
 use Gtk3\Gtk\Signal;
 use Gtk3\Gtk\Container;
 use Gtk3\Gtk\Label;
-use Gtk3\Gtk\Grid;
+use Gtk3\Gtk\Box;
 
 $gtk = Gtk::getInstance();
 $gtk->init();
@@ -22,21 +22,25 @@ $signal->connect($window, 'destroy', [$gtk, 'mainQuit'], null);
 
 $container = new Container();
 
-$label = new Label(date('H:i:s'));
-$label2 = new Label('');
+$clockLabel = new Label(date('H:i:s'));
+$cpuLabel = new Label('');
 
-$grid = new Grid();
-$grid->attach($label2, 0, 1,1,1);
-$grid->attach($label, 0, 2,1,1);
+$hbox = new Box(Box::GTK_ORIENTATION_HORIZONTAL, 5);
+$vbox = new Box(Box::GTK_ORIENTATION_VERTICAL, 10);
 
-$container->add($window, $grid);
+$vbox->packStart($cpuLabel, true, false, 5);
+$vbox->packStart($clockLabel, true, false, 5);
+
+$hbox->packStart($vbox, true, false, 5);
+
+$container->add($window, $hbox);
 
 $window->showAll();
 
-$gtk->g_timeout_add(2000, function () use ($label, $label2) {
+$gtk->g_timeout_add(1000, function () use ($cpuLabel, $clockLabel) {
     $cpu = (int)file_get_contents('/sys/class/thermal/thermal_zone0/temp');
-    $label2->setText('CPU=' . number_format($cpu/1000, 2));
-    $label->setText(date('H:i:s'));
+    $cpuLabel->setText('CPU=' . number_format($cpu/1000, 2));
+    $clockLabel->setText(date('H:i:s'));
     return true;
 }, null);
 
