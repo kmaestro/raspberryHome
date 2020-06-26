@@ -6,6 +6,6 @@
         }
     ],
     "require": {
-        "kmaestro/gtk": "^0.0.2"
+        "kmaestro/gtk": "^0.0.3"
     }
 }

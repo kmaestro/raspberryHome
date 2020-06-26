@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8828bb16577be105038f5be2c6f5b069",
+    "content-hash": "acf16b3020e7ff810b98e2f05822f32b",
     "packages": [
         {
             "name": "kmaestro/gtk",
-            "version": "0.0.2",
+            "version": "0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kmaestro/php-ffi-gtk3.git",
-                "reference": "f1e8d651c3365ee9087db81cfc2ab3353f59160b"
+                "reference": "91d5572131a11257bdd8791e986c74dfb766182d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kmaestro/php-ffi-gtk3/zipball/f1e8d651c3365ee9087db81cfc2ab3353f59160b",
-                "reference": "f1e8d651c3365ee9087db81cfc2ab3353f59160b",
+                "url": "https://api.github.com/repos/kmaestro/php-ffi-gtk3/zipball/91d5572131a11257bdd8791e986c74dfb766182d",
+                "reference": "91d5572131a11257bdd8791e986c74dfb766182d",
                 "shasum": ""
             },
             "require": {
@@ -41,7 +41,7 @@
                     "email": "polishuk1003@gmail.com"
                 }
             ],
-            "time": "2020-06-20T18:36:28+00:00"
+            "time": "2020-06-21T10:41:22+00:00"
         },
         {
             "name": "phplrt/lexer-contracts",
