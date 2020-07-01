@@ -54,7 +54,7 @@ $gtk->g_timeout_add(1000, function () use ($cpuLabel, $clockLabel) {
     return true;
 }, null);
 
-$gtk->g_timeout_add(5000, function () use ($temperatureLabel, $pressureLabel, $humidityLabel){
+$gtk->g_timeout_add(1000, function () use ($temperatureLabel, $pressureLabel, $humidityLabel){
     try {
         $sh = `python ./bme280.py 2>&1`;
         preg_match('/Temperature\s*:\s*([^\s]*)\s*/', $sh, $temperatureSensor);
@@ -66,9 +66,9 @@ $gtk->g_timeout_add(5000, function () use ($temperatureLabel, $pressureLabel, $h
         $humidity[1] = 0;
     }
 
-    $temperatureLabel->setText('Temperature: ' . round((float)$temperatureSensor[1], 2));
-    $pressureLabel->setText('Pressure: ' . round((float)$pressure[1], 2));
-    $humidityLabel->setText('Humidity: ' . round((float)$humidity[1], 2));
+    $temperatureLabel->setText('Temperature: ' . number_format(round((float)$temperatureSensor[1], 2), 2));
+    $pressureLabel->setText('Pressure: ' . number_format(round((float)$pressure[1], 2), 2));
+    $humidityLabel->setText('Humidity: ' . number_format(round((float)$humidity[1], 2), 2));
 }, null);
 
 $gtk->main();
