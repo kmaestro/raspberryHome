@@ -29,9 +29,9 @@ $container = new Container();
 
 $clockLabel = new Label(date('H:i:s'));
 $cpuLabel = new Label(tmpCPU());
-$temperatureLabel = new Label('temperature: +10');
-$pressureLabel = new Label('pressure: 50');
-$humidityLabel = new Label('humidity: 750');
+$temperatureLabel = new Label('Temperature: 0');
+$pressureLabel = new Label('Pressure: 0');
+$humidityLabel = new Label('Humidity: 0');
 
 $hbox = new Box(Box::GTK_ORIENTATION_HORIZONTAL, 5);
 $vbox = new Box(Box::GTK_ORIENTATION_VERTICAL, 10);
@@ -52,6 +52,23 @@ $gtk->g_timeout_add(1000, function () use ($cpuLabel, $clockLabel) {
     $cpuLabel->setText(tmpCPU());
     $clockLabel->setText(date('H:i:s'));
     return true;
+}, null);
+
+$gtk->g_timeout_add(5000, function () use ($temperatureLabel, $pressureLabel, $humidityLabel){
+    try {
+        $sh = `python ./bme280.py 2>&1`;
+        preg_match('/Temperature\s*:\s*([^\s]*)\s*/', $sh, $temperatureSensor);
+        preg_match('/Pressure\s*:\s*([^\s]*)\s*/', $sh, $pressure);
+        preg_match('/Humidity\s*:\s*([^\s]*)\s*/', $sh, $humidity);
+    } catch (Throwable $exception) {
+        $temperatureSensor[1] = 0;
+        $pressure[1] = 0;
+        $humidity[1] = 0;
+    }
+
+    $temperatureLabel->setText('Temperature: ' . round((float)$temperatureSensor[1], 2));
+    $pressureLabel->setText('Pressure: ' . round((float)$pressure[1], 2));
+    $humidityLabel->setText('Humidity: ' . round((float)$humidity[1], 2));
 }, null);
 
 $gtk->main();
