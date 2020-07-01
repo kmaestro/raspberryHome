@@ -1,0 +1,11 @@
+{
+    "authors": [
+        {
+            "name": "Дмитрий Полищук",
+            "email": "polishuk1003@gmail.com"
+        }
+    ],
+    "require": {
+        "kmaestro/gtk": "^0.0.3"
+    }
+}
